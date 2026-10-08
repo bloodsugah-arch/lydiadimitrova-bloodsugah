@@ -60,6 +60,9 @@ dialog button{background:#fff;border:0;color:#000;padding:9px 18px;border-radius
 .contact h2{font-family:var(--font);font-weight:400;font-size:clamp(34px,5.5vw,80px);line-height:1.05;letter-spacing:-.02em}
 .contact .mail{display:inline-block;margin-top:32px;font-size:clamp(20px,2.6vw,34px);text-decoration:none;border-bottom:3px solid var(--accent);padding-bottom:4px;word-break:break-all}
 .contact .tel{display:block;margin-top:22px;font-size:clamp(18px,2vw,24px);text-decoration:none}
+.contact .links{display:flex;justify-content:center;gap:12px 36px;margin-top:34px;flex-wrap:wrap}
+.contact .links a{font-size:clamp(17px,1.8vw,22px);text-decoration:none;color:var(--muted);border-bottom:2px solid transparent;padding-bottom:2px;transition:color .2s,border-color .2s}
+.contact .links a:hover,.contact .links a:focus-visible{color:var(--text);border-color:var(--accent)}
 footer{text-align:center;padding:0 20px 32px;color:var(--muted);font-size:14px}
 
 @media (max-width:720px){.grid{grid-template-columns:1fr}}
@@ -84,6 +87,10 @@ footer{text-align:center;padding:0 20px 32px;color:var(--muted);font-size:14px}
   <h2>Let's make something.</h2>
   <a class="mail" href="mailto:dimitrovalydia@yahoo.com">dimitrovalydia@yahoo.com</a>
   <a class="tel" href="tel:+359886976475">+359 886 976 475</a>
+  <div class="links">
+    <a href="https://www.instagram.com/sugahblood/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/lydia-dimitrova" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
 </section>
 <footer>© 2026 Lydia Dimitrova</footer>
 
