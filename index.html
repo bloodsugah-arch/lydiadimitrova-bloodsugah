@@ -46,7 +46,9 @@ header a{text-decoration:none;font-size:16px;font-weight:500;border-bottom:2px s
 .tile:last-child:nth-child(odd){grid-column:1/-1}
 .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:56px clamp(16px,2vw,32px) clamp(16px,2vw,28px);background:linear-gradient(transparent,rgba(0,0,0,.85))}
 .tile h2{font-family:var(--font);font-weight:500;font-size:clamp(20px,2.2vw,32px)}
-.tile span{display:block;margin-top:4px;font-size:15px;color:var(--muted)}
+.tile .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.tile .yr{font-weight:400;font-size:clamp(15px,1.4vw,19px);color:var(--muted);flex-shrink:0}
+.tile span{display:block;margin-top:6px;font-size:clamp(14px,1.2vw,16px);line-height:1.35;color:var(--muted)}
 
 /* Lightbox */
 dialog{border:0;background:transparent;padding:0;width:min(1200px,94vw);max-width:none;margin:auto;color:#fff}
@@ -103,26 +105,35 @@ footer{text-align:center;padding:0 20px 32px;color:var(--muted);font-size:14px}
    YOUR PROJECTS: edit this list.
    file  = name of the video inside the "videos" folder
            (its thumbnail is picked automatically: project-1.mp4 -> thumbnails/thumbnail-project-1.jpg)
-   title = big text on the tile
-   info  = small text under it
+   title = project name (first line, left)
+   year  = year (first line, right)
+   type  = what kind of project it is (second line)
+   role  = what YOU did on it, e.g. "Director, editor, VFX" (second line, after the type)
    To add a project, copy one line. To remove one, delete its line.
    ============================================================ */
 const projects=[
-  {file:"project-1.mp4", title:"The Well", info:"Diploma short movie, 2025"},
-  {file:"project-2.mp4", title:"Tonight I Opened My Eyes", info:"Thriller, 2023"},
-  {file:"project-3.mp4", title:"Unlucky-Kan Wakan", info:"Music Video, 2024"},
-  {file:"project-4.mp4", title:"GATS", info:"Personal 3D Project, 2025"},
-  {file:"project-5.mp4", title:"Blow up-Vezhdi", info:"Music Video, 2026"},
-  {file:"project-6.mp4", title:"Eyes Off-Ognebesgur", info:"Music Video, 2026"},
-  {file:"project-7.mp4", title:"Gothic Window", info:"Personal 3D Project, 2025"},
-  {file:"project-8.mp4", title:"CLOSED-Vivian Koch", info:"Audioreactive visual, 2026"},
-  {file:"project-9.mp4", title:"I know you are here-Vivian Koch", info:"Audioreactive visual, 2026"},
-  {file:"project-10.mp4", title:"Blow the speaker-fakemink", info:"Audioreactive visual, 2026"},
-  {file:"project-11.mp4", title:"Blow up-Vezhdi", info:"Audioreactive visual, 2026"},
-  {file:"project-12.mp4", title:"BLDBLW-Vezhdi", info:"Audioreactive visual, 2026"},
-  {file:"project-13.mp4", title:"Cut-Vezhdi", info:"Audioreactive visual, 2026"},
-  {file:"project-14.mp4", title:"Wild heart", info:"Music Video, 2026"},
-  {file:"project-15.mp4", title:"Obicha me, ne me obicha-Georgi Velev", info:"Music Video, 2026"},
+  {file:"project-1.mp4", title:"Wild Heart", year:"2026", type:"Music Video", role:"Editor"},
+  {file:"project-2.mp4", title:"Georgi Velev-ONMO", year:"2026", type:"Music Video", role:"Editor"},
+  {file:"project-3.mp4", title:"I know you are here-Vivian Koch", year:"2026", type:"Audioreactive visual", role:"Code Artist"},
+  {file:"project-4.mp4", title:"CLOSED-Vivian Koch", year:"2026", type:"Audioreactive visual", role:"Code Artist"},
+  {file:"project-5.mp4", title:"Blow up-Vezhdi", year:"2026", type:"Music Video", role:"Editor and VFX Artist"},
+  {file:"project-6.mp4", title:"Eyes Off-Ognebesgur", year:"2026", type:"Music Video", role:"VFX and Code Artist"},
+  {file:"project-7.mp4", title:"Blow the speaker-fakemink", year:"2026", type:"Audioreactive visual", role:"Code Artist"},
+  {file:"project-8.mp4", title:"Blow up-Vezhdi", year:"2026", type:"Audioreactive visual", role:"Code Artist"},
+  {file:"project-9.mp4", title:"BLDFLW-Vezhdi", year:"2026", type:"Audioreactive visual", role:"Code Artist"},
+  {file:"project-10.mp4", title:"Cut-Vezhdi", year:"2026", type:"Audioreactive visual", role:"Code Artist"},
+  {file:"project-11.mp4", title:"Happy restaurant-Почти известни", year:"2026", type:"YouTube short series", role:"DIT"},
+  {file:"project-12.mp4", title:"The Well", year:"2025", type:"Diploma short movie", role:"Editor"},
+  {file:"project-13.mp4", title:"Gothic Window", year:"2025", type:"Personal 3D project", role:"3D artist"},
+  {file:"project-14.mp4", title:"GATS", year:"2025", type:"Personal 3D project", role:"3D artist"},
+  {file:"project-15.mp4", title:"GALENA-Докторе", year:"2024", type:"Music Video", role:"DIT"},
+  {file:"project-16.mp4", title:"Mila Robert- ME4KA ", year:"2023", type:"Music Video", role:"DIT"},
+  {file:"project-17.mp4", title:"Dara Ekimova-Дишам", year:"2023", type:"Music Video", role:"DIT"},
+  {file:"project-18.mp4", title:"IMERA-ДНК", year:"2023", type:"Music Video", role:"DIT"},
+  {file:"project-19.mp4", title:"Tonight I Opened My Eyes", year:"2023", type:"Thriller", role:"Editor"},
+  {file:"project-20.mp4", title:"Kan Wakan-Unlucky", year:"2023", type:"Music Video", role:"Editor"},
+  {file:"project-21.mp4", title:"Preyah-Диамант", year:"2023", type:"Music Video", role:"DIT"},
+  {file:"project-22.mp4", title:"RA.YA-Захарно сърце", year:"2022", type:"Music Video", role:"DIT"},
 ];
 
 const canHover=matchMedia('(hover:hover)').matches;
@@ -134,12 +145,13 @@ const ptitle=document.getElementById('ptitle');
 projects.forEach(p=>{
   const t=document.createElement('button');
   t.className='tile';t.dataset.src='videos/'+p.file;t.dataset.title=p.title;
-  t.innerHTML='<img alt=""><video muted loop playsinline preload="none"></video><div class="cap"><h2></h2><span></span></div>';
+  t.innerHTML='<img alt=""><video muted loop playsinline preload="none"></video><div class="cap"><div class="top"><h2></h2><b class="yr"></b></div><span></span></div>';
   const img=t.querySelector('img');
   img.src='thumbnails/'+(p.thumb||'thumbnail-'+p.file.replace(/\.[^.]+$/,'')+'.jpg');
   img.onerror=()=>{img.remove();t.classList.add('nothumb')}; // no thumbnail yet: show the video's first frame
   t.querySelector('h2').textContent=p.title;
-  t.querySelector('span').textContent=p.info;
+  t.querySelector('.yr').textContent=p.year||'';
+  t.querySelector('span').textContent=[p.type,p.role].filter(Boolean).join(' · ');
   grid.appendChild(t);
 
   // Load each video only when it is near the screen, so 25+ videos stay fast
